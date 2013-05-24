@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'commander/import'
+
+$:.push File.expand_path("../../lib", __FILE__)
+require 'ricotta'
+
+HighLine.track_eof = false # Fix for built-in Ruby
+
+program :version, Ricotta::VERSION
+program :description, 'Download translations from Ricotta'
+
+program :help, 'Author', 'Erik Sundin <erik@eriksundin.se>'
+program :help, 'Website', 'http://github.com/eriksundin'
+program :help_formatter, :compact
+
+default_command :help
+
+require 'ricotta/commands'
