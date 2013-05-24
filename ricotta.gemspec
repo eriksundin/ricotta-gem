@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "ricotta"
   s.authors     = ["Erik Sundin"]
   s.email       = "erik@eriksundin.se"
-  s.homepage    = "http://github.com/eriksundin/ricotta"
+  s.homepage    = "http://github.com/eriksundin/ricotta-gem"
   s.version     = Ricotta::VERSION
   s.platform    = Gem::Platform::RUBY
   s.summary     = "Ricotta"
