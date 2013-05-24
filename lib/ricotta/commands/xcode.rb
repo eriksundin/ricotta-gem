@@ -11,6 +11,7 @@ command :'install:xcode' do |c|
   c.option '--lproj_dir LPROJDIR', "Home dir of the localized Xcode project folders (default: scans the working directory)"
   c.option '--template TEMPLATE', "The template (default: 'localizable_strings_padding')"
   c.option '--branch BRANCH', "The branch name (default: 'trunk')"
+  c.option '--config FILE', "Load default options from a configuration file"
   
   c.action do |args, options|
     options.default :branch => 'trunk', :template => 'localizable_strings_padding'

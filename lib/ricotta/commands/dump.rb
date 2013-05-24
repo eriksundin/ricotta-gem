@@ -10,6 +10,7 @@ command :'dump' do |c|
   c.option '-T', '--template TEMPLATE', "Template name"
   c.option '--subset SUBSET', "The subset name"
   c.option '--branch BRANCH', "The branch name ('trunk' if not set)"
+  c.option '--config FILE', "Load default options from a configuration file"
   
   c.action do |args, options|
     options.default :branch => 'trunk'
@@ -17,7 +18,7 @@ command :'dump' do |c|
     global_config = Ricotta::Configuration::Config.new(options.config)
     options.url = global_config[:url] unless options.url
     options.project = global_config[:project] unless options.project
-    optinos.language = global_config[:language] unless options.language
+    options.language = global_config[:language] unless options.language
     options.subset = global_config[:subset] unless options.subset
     options.template = global_config[:template] unless options.template
     options.branch = global_config[:branch] if global_config[:branch] and options.branch.eql?('trunk')
