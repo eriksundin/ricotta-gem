@@ -6,7 +6,7 @@ module Ricotta::Configuration
     def initialize(rcfile)
       @config = Hash.new
       parse(File.expand_path('~/.ricottarc'))
-      parse('ricottarc')
+      parse('.ricottarc')
       parse(rcfile)
     end
     
