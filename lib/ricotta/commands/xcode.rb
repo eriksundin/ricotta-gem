@@ -32,8 +32,29 @@ command :'install:xcode' do |c|
     determine_language! unless @language = options.language
     
     unless @resource_path = options.lproj_dir 
-      resource_dir_lookup = Dir.glob('**/*.lproj').first    
-      @resource_path = File.dirname(resource_dir_lookup) if resource_dir_lookup
+      resource_dir_lookup = Dir.glob('**/*.lproj')
+      
+      if resource_dir_lookup
+        
+        dir_options = Set.new
+        resource_dir_lookup.each do |choice|
+          dir_options.add File.dirname(choice)
+        end
+            
+        if dir_options.count > 1
+        
+          none_option = 'Manual Entry'
+          say_warning "Multiple .lproj destinations found. To avoid this in the future add a lproj_dir value in your project .ricottarc file."
+          resource_dir_lookup = choose("Choose .lproj destination?", *dir_options, none_option)
+          
+          if resource_dir_lookup.eql?(none_option)
+            resource_dir_lookup = nil
+          end
+          @resource_path = resource_dir_lookup
+        else
+          @resource_path = dir_options.first
+        end    
+      end
     end
     
     determine_resource_path! unless @resource_path
