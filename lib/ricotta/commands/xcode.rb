@@ -45,7 +45,8 @@ command :'install:xcode' do |c|
         
           none_option = 'Manual Entry'
           say_warning "Multiple .lproj destinations found. To avoid this in the future add a lproj_dir value in your project .ricottarc file."
-          resource_dir_lookup = choose("Choose .lproj destination?", *dir_options, none_option)
+          dir_options.add(none_option)
+          resource_dir_lookup = choose("Choose .lproj destination?", *dir_options)
           
           if resource_dir_lookup.eql?(none_option)
             resource_dir_lookup = nil
